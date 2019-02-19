@@ -36,6 +36,8 @@ public class Window {
 
 		glfwSetWindowPos(window, (videoMode.width() - width) / 2, (videoMode.height() - height) / 2);
 		
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		
 		glfwMakeContextCurrent(window);
 		
 		glfwSwapInterval(1);
