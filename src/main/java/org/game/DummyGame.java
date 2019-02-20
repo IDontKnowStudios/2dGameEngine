@@ -4,9 +4,9 @@ import static org.lwjgl.glfw.GLFW.*;
 
 import org.engine.GameLoop;
 import org.engine.IGameLogic;
-import org.engine.KeyboardHandler;
 import org.engine.Renderer;
 import org.engine.Window;
+import org.engine.input.KeyboardHandler;
 import org.lwjgl.glfw.GLFWKeyCallback;
 
 public class DummyGame implements IGameLogic {

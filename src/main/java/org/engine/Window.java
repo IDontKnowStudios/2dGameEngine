@@ -1,26 +1,9 @@
 package org.engine;
 
-import static org.lwjgl.glfw.GLFW.GLFW_CURSOR;
-import static org.lwjgl.glfw.GLFW.GLFW_CURSOR_DISABLED;
-import static org.lwjgl.glfw.GLFW.GLFW_FALSE;
-import static org.lwjgl.glfw.GLFW.GLFW_MAXIMIZED;
-import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
-import static org.lwjgl.glfw.GLFW.GLFW_TRUE;
-import static org.lwjgl.glfw.GLFW.GLFW_VISIBLE;
-import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
-import static org.lwjgl.glfw.GLFW.glfwDefaultWindowHints;
-import static org.lwjgl.glfw.GLFW.glfwGetPrimaryMonitor;
-import static org.lwjgl.glfw.GLFW.glfwGetVideoMode;
-import static org.lwjgl.glfw.GLFW.glfwInit;
-import static org.lwjgl.glfw.GLFW.glfwMakeContextCurrent;
-import static org.lwjgl.glfw.GLFW.glfwSetFramebufferSizeCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetInputMode;
-import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetWindowPos;
-import static org.lwjgl.glfw.GLFW.glfwShowWindow;
-import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
-import static org.lwjgl.glfw.GLFW.glfwWindowHint;
+import static org.lwjgl.glfw.GLFW.*;
 
+import org.engine.input.KeyboardHandler;
+import org.engine.input.MouseHandler;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 
@@ -50,6 +33,9 @@ public class Window {
 		}
 		
 		glfwSetKeyCallback(window, new KeyboardHandler());
+		glfwSetCursorPosCallback(window, new MouseHandler());
+		
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 		
 		glfwSetFramebufferSizeCallback(window, (window, pwidth, pheight) -> {
 			this.width = pwidth;
@@ -58,8 +44,6 @@ public class Window {
 		});
 
 		glfwSetWindowPos(window, (videoMode.width() - width) / 2, (videoMode.height() - height) / 2);
-		
-		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 		
 		glfwMakeContextCurrent(window);
 		

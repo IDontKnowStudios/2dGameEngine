@@ -1,4 +1,4 @@
-package org.engine;
+package org.engine.input;
 
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
