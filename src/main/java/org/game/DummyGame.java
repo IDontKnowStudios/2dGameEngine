@@ -1,20 +1,16 @@
 package org.game;
 
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
-
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
-
 import static org.lwjgl.glfw.GLFW.*;
 
+import org.engine.GameLoop;
 import org.engine.IGameLogic;
+import org.engine.KeyboardHandler;
 import org.engine.Renderer;
 import org.engine.Window;
-import org.engine.GameLoop;
+import org.lwjgl.glfw.GLFWKeyCallback;
 
 public class DummyGame implements IGameLogic {
-	private Window window;
+	private long window;
 	private GameLoop gameLoop;
 	private Renderer renderer;
 
@@ -22,11 +18,16 @@ public class DummyGame implements IGameLogic {
 	private String title = "GAME";
 
 	public DummyGame() {
-		window = new Window();
-		window.initWindow(width, height, title);
-		renderer = new Renderer(window.getWindow());
+		Window guiWindow = new Window();
+		guiWindow.initWindow(width, height, title);
+		window = guiWindow.getWindow();
+		renderer = new Renderer(window);
 		gameLoop = new GameLoop();
-		gameLoop.startLoop(60, 20, this, window.getWindow());
+		gameLoop.startLoop(60, 20, this, window);
+	}
+	
+	public void init() {
+		
 	}
 
 	public void input() {
@@ -34,7 +35,7 @@ public class DummyGame implements IGameLogic {
 	}
 
 	public void update() {
-
+		if(KeyboardHandler.isKeyDown(GLFW_KEY_ESCAPE)) glfwSetWindowShouldClose(window, true);
 	}
 
 	public void render() {

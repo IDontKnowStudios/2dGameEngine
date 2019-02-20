@@ -6,6 +6,7 @@ import static org.lwjgl.opengl.GL11.glClearColor;
 import org.lwjgl.opengl.GL;
 
 public class GameLoop {
+	
 	public void startLoop(int FPS, int UPS, IGameLogic gameLogic, long window) {
 		long initialTime = System.nanoTime();
 		final double timeU = 1000000000 / UPS;
